@@ -17,18 +17,20 @@ function TaskCard({task}) {
   return (
     <div
       key={task.id}
-      className="bg-white rounded-lg p-2 hover:cursor-pointer"
+      className="bg-[#393e49] rounded-lg py-4 px-6 hover:cursor-pointer"
       onClick={() => {
         router.push(`/edit/${task.id}`)
       }}
     >
-      <h2 className="font-extrabold text-lg text-sky-500">{task.title}</h2>
-      <p className="text-black my-1">
+      <h2 className="font-extrabold text-lg text-[#f6f7f9] text-left">{task.title}</h2>
+      <p className="text-[#ebecf0] my-3 first-letter:capitalize">
         {task.description}
       </p>
-      <button onClick={handleClickDelete} className="bg-red-600 py-1 w-full rounded-lg">
+      <div className="flex justify-center my-2">
+      <button onClick={handleClickDelete} className="bg-red-600 font-semibold py-1 w-32 rounded-lg">
         Delete 🗑
       </button>
+      </div>
     </div>
   )
 }

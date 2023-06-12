@@ -1,7 +1,9 @@
 # Basic CRUD App
 
-## Tecnologias utilizadas
+## Description
 
-* Next.js
-* TailwindCSS
-* React Hook Form (por añadir)
+Using Next.js, TailwindCSS, React Hook Form and React Hot Toast.
+
+## Preview
+
+![Preview](./public/preview.png)

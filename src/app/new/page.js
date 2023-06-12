@@ -33,31 +33,39 @@ function NewTask({ params }) {
   }, [])
 
   return (
-    <div>
-      <form onSubmit={onSubmit}>
-        <label>Task:</label>
+    <div className="bg-gray-700 m-4 py-4 px-7 rounded-xl">
+      <form onSubmit={onSubmit} className="flex flex-col gap-y-2">
+        <label className="text-xl">Task:</label>
         <input
-          className="text-black"
-          placeholder="task #n"
+          className="text-black p-1 rounded"
+          placeholder="Task title"
           {...register("title", { required: true })}
         />
         {
-          errors.title && (
-          <span>This field is required</span>
+          errors.title && (<span className="text-red-400 font-semibold">This field is required</span>
           )
         }
-        <label>Description:</label>
-        <input
-          className="text-black"
-          placeholder="task description #n"
+        <label className="text-xl">Description:</label>
+        <textarea
+          maxLength={180}
+          rows="5"
+          className="text-black p-1 rounded resize-none"
+          placeholder="Task description"
           {...register("description", { required: true })}
         />
         {
           errors.description && (
-          <span>This field is required</span>
+          <span className="text-red-400 font-semibold">This field is required</span>
           )
         }
-        <button className="bg-green-500">Add ➕</button>
+        <div className="flex justify-center my-2">
+          {params.id ? (
+            <button className="bg-blue-500 w-36 py-2 font-bold rounded text-xl hover:bg-blue-600">Update</button>
+          ) : (
+            <button className="bg-blue-500 w-36 py-2 font-bold rounded text-xl hover:bg-blue-600">Add</button>
+          )}
+          
+        </div>
       </form>
     </div>
   )
