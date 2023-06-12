@@ -14,9 +14,6 @@ function Header() {
         <Link href="/">
           Home
         </Link>
-        <Link href="/about">
-          About
-        </Link>
         <Link href="/new">
           New
         </Link>

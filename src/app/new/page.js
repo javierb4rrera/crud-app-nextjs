@@ -1,52 +1,63 @@
 "use client"
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import { useTasks } from "@/context/TasksContext"
 import { useRouter } from "next/navigation"
+import { useForm } from "react-hook-form"
+import { toast } from "react-hot-toast"
 
 function NewTask({ params }) {
   const router = useRouter()
   const { tasks, createTask, updateTask } = useTasks()
-  const [ task, setTask ] = useState({
-    title: "",
-    description: ""
-  })
+  const { register, handleSubmit, setValue, formState: { errors }} = useForm()
 
-  const handleChange = (e) => {
-    setTask(
-      {...task, [e.target.name]: e.target.value}
-    )
-  }
-
-  const handleSubmit = (e) => {
-    e.preventDefault()
+  const onSubmit = handleSubmit((data) => {
+    const { title, description } = data
     if(!params.id) {
-      createTask(task.title, task.description)
+      createTask(title, description)
+      toast.success("Task created successfully")
     } else {
-      updateTask(params.id, task.title, task.description)
+      updateTask(params.id, title, description)
+      toast.success("Task updated successfully")
     }
     router.push("/")
-  }
+  })
 
   useEffect(() => {
     if(params.id) {
       const taskFound = tasks.find(task => task.id === params.id)
       if(taskFound) {
-        setTask({
-          title: taskFound.title,
-          description: taskFound.description
-        })
+        setValue("title", taskFound.title)
+        setValue("description", taskFound.description)
       }
     }
   }, [])
 
   return (
     <div>
-      <form onSubmit={handleSubmit}className="">
+      <form onSubmit={onSubmit}>
         <label>Task:</label>
-        <input value={task.title} type="text" name="title" className="text-black" onChange={handleChange}/>
+        <input
+          className="text-black"
+          placeholder="task #n"
+          {...register("title", { required: true })}
+        />
+        {
+          errors.title && (
+          <span>This field is required</span>
+          )
+        }
         <label>Description:</label>
-        <textarea value={task.description} type="text" name="description" className="text-black" onChange={handleChange}/>
-        <button className="bg-green-500">Add new task</button>
+        <input
+          className="text-black"
+          placeholder="task description #n"
+          {...register("description", { required: true })}
+        />
+        {
+          errors.description && (
+          <span>This field is required</span>
+          )
+        }
+        <button className="bg-green-500">Add ➕</button>
       </form>
     </div>
   )
