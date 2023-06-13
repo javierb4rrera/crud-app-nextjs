@@ -33,9 +33,9 @@ function NewTask({ params }) {
   }, [])
 
   return (
-    <div className="bg-gray-700 m-4 py-4 px-7 rounded-xl">
-      <form onSubmit={onSubmit} className="flex flex-col gap-y-2">
-        <label className="text-xl">Task:</label>
+      <div className="max-w-[380px] mx-auto">
+      <form onSubmit={onSubmit} className="flex flex-col gap-y-2 bg-gray-700 py-5 px-7 rounded-xl min-w-[200px] m-4">
+        <label className="text-lg">Task:</label>
         <input
           className="text-black p-1 rounded"
           placeholder="Task title"
@@ -45,10 +45,10 @@ function NewTask({ params }) {
           errors.title && (<span className="text-red-400 font-semibold">This field is required</span>
           )
         }
-        <label className="text-xl">Description:</label>
+        <label className="text-lg">Description:</label>
         <textarea
           maxLength={180}
-          rows="5"
+          rows="4"
           className="text-black p-1 rounded resize-none"
           placeholder="Task description"
           {...register("description", { required: true })}
@@ -60,9 +60,9 @@ function NewTask({ params }) {
         }
         <div className="flex justify-center my-2">
           {params.id ? (
-            <button className="bg-blue-500 w-36 py-2 font-bold rounded text-xl hover:bg-blue-600">Update</button>
+            <button className="bg-blue-500 w-24 py-2 font-bold rounded text-lg hover:bg-blue-600">Update</button>
           ) : (
-            <button className="bg-blue-500 w-36 py-2 font-bold rounded text-xl hover:bg-blue-600">Add</button>
+            <button className="bg-blue-500 w-24 py-2 font-bold rounded text-lg hover:bg-blue-600">Add</button>
           )}
           
         </div>

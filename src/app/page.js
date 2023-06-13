@@ -6,7 +6,7 @@ import { useTasks } from "@/context/TasksContext"
 export default function Home() {
   const { tasks } = useTasks()
   return (
-    <main className="p-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 max-w-[660px] gap-3">
+    <main className="p-4 grid grid-cols-1 max-w-[660px] gap-3 mx-auto">
       {tasks.length === 0 && (
         <NoTasks />
       )}

@@ -12,7 +12,10 @@ export function useLocalStorage(key, initialValue) {
   }, [])
 
   useEffect(() => {
-    if(state.length > 0)
+    // problema: si el array de tareas está vacío, no se guarda en localStorage
+    // por tanto, siempre habrá un elemento en localStorage
+    // if(state.legth > 0)
+    if(state)
       localStorage.setItem(key, JSON.stringify(state))
   }, [state])
 
